@@ -1,0 +1,19 @@
+{
+  "name": "eth-repl-console",
+  "version": "1.0.0",
+  "description": "Ethereum repl console",
+  "main": "main.js",
+  "scripts": {
+    "pkg_generator": "mkdir dist; cd dist; pkg ../generator/generator.js",
+    "pkg_replconsole": "mkdir dist; cd dist; pkg ../main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eth-hd-wallet": "^0.5.1",
+    "minimist": "^1.2.5",
+    "promptly": "^3.0.3",
+    "sync-request": "^6.1.0",
+    "web3": "^1.2.9"
+  }
+}

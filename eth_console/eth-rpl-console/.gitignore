@@ -1,0 +1,7 @@
+node_modules/
+.vscode
+WALLET2.SEC
+STORAGE.DAT
+CONFIG.DAT
+WALLET.SEC
+dist/

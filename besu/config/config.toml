@@ -1,0 +1,33 @@
+
+logging="INFO"
+data-path="/opt/besu/data"
+host-whitelist=["*"]
+genesis-file="/config/besu.json" 
+network-id=20200527
+#node-private-key-file="/opt/besu/keys/key"
+
+# rpc
+rpc-http-enabled=true
+rpc-http-host="0.0.0.0"
+rpc-http-api=["ETH","NET","WEB3","ADMIN","CLIQUE","PERM","MINER","PRIV","TXPOOL"]
+rpc-http-port=8545
+rpc-http-cors-origins=["*"]
+
+
+# ws
+rpc-ws-enabled=true
+rpc-ws-host="0.0.0.0"
+rpc-ws-port=8546
+
+# graphql
+graphql-http-enabled=true
+graphql-http-host="0.0.0.0"
+graphql-http-port=8547
+graphql-http-cors-origins=["*"]
+
+# metrics
+metrics-enabled=true
+metrics-host="0.0.0.0"
+metrics-port=9545
+
+
