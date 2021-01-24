@@ -9,10 +9,16 @@ var genesisGenerator=require("./genesisTemplate");
 
 
 (async ()=>{
+    let help=false;
+    if(process.argv.length<=2){
+        help=true;
+    }
     var args = require('minimist')(process.argv.slice(2));
-    console.log(args);
-
-  
+    //console.log(args);
+    console.info("*****************************************");
+    console.info(" GEN WALLET (C) Vicente Boluda Vias 2021 ")
+    console.info("*****************************************");
+    
     var arg_help=args.help;
     var arg_genwallet=args.genwallet || false;
     var arg_walletfile=args.walletfile || 'WALLET.dat';
@@ -27,16 +33,15 @@ var genesisGenerator=require("./genesisTemplate");
 
     
 
-    console.info("*****************************************");
-    console.info(" GEN WALLET")
-    console.info("*****************************************");
-    if(arg_help){
-        console.log("genwallet [args]");
-        console.log("--genwallet \t\t To generate new wallet from scratch");
-        console.log("--walletfile [file] \t Output  wallet file");
-        console.log("--import [mnemonic] \t Mnemonic words to recover wallet");
-        console.log("--keyfile \t Private key file for first validator");
-        console.log("--addressfile \t Address file for first validator");
+   
+    if(arg_help || help){
+        console.info("genwallet [args]");
+        console.info("--genwallet \t\t To generate new wallet from scratch");
+        console.info("--walletfile [file] \t Output  wallet file");
+        console.info("--import [mnemonic] \t Mnemonic words to recover wallet");
+        console.info("--keyfile \t Private key file for first validator");
+        console.info("--addressfile \t Address file for first validator");
+        console.info("--genesisfile \t Created Genesys File");
         
         console.log("--help \t\t\t Shows this text");
         process.exit(0);

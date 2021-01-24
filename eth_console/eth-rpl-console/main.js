@@ -12,27 +12,23 @@
     console.info("");
 
 
-    //var args = require('minimist')(process.argv.slice(2));
-    //console.log(args);
+    var args = require('minimist')(process.argv.slice(2));
+    console.log(args);
 
-    // if(args[2]==="generateWallet"){
-    //     (async ()=>{
-    //         console.info("YOU ARE GOING TO DELETE CURRENT WALLET (IF EXISTS) AND REGENERATE NEW ONE");
-    //         console.info("DO NOT DO IT UNLESS YOU ARE AWARE OF ITS IMPLICATIONS!!!!!!!!!!!!!!!!!!!!");
-    //         console.info("(TO KEEP SAFE, PRESS ^C )")
-    //         var wallet=require("./modules/wallet/hdWallet");
-    //         await wallet.generateWallet();
-    //         process.exit();
-    //     })();
-    // }
+    var arg_configfile=args.configfile || 'CONFIG.DAT';
+    var arg_walletfile=args.walletfile || 'WALLET.SEC';
+
+    console.log("Using config file: "+arg_configfile);
+    console.log("Using wallet file: "+arg_walletfile);
 
     var Config=require("./modules/config/Config");
     console.info("Retrieve config information");
-    var config=new Config();
+    var config=new Config(arg_configfile);
     config.retrieve();
 
     const promptly=require("promptly");
     var wallet=require("./modules/wallet/hdWallet");
+    wallet.setWalletFile(arg_walletfile);
     if(!wallet.existsWallet()){
         console.info("NO WALLET PRESENT. GENERATE NEW ONE");
         var mnemonic= await promptly.prompt('Provide menmonic to import or live blank to generate: ',{retry:false,default:'#'});

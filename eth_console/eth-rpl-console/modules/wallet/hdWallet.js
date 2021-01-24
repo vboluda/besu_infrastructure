@@ -12,6 +12,10 @@ class bHDWallet{
         this.generateAddress=elem;
     }
 
+    setWalletFile(_walletFile){
+        this.walletFile=_walletFile;
+    }
+
     unlockWallet(password){
         let encMnemonic="";
         if(process.env.HDWALLET_ENC){

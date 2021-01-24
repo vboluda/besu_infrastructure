@@ -13,14 +13,14 @@ RUN apt-get update && apt-get install dos2unix && \
 
 # Run dos2unix EOL conversion on all shell scripts to prevent scripts to fail if edited with a windows IDE
 # that rewrote the EOL to CRLF before we build the image. See issue #4
-RUN find /opt/besu/*.sh -type f -print0 | xargs -0 dos2unix
+# RUN find /opt/besu/*.sh -type f -print0 | xargs -0 dos2unix
 
 USER besu
 
 COPY config/besu.json /config/
-COPY --chown=besu:besu config/validator1/key /opt/besu/data/
-COPY --chown=besu:besu config/validator1/node1Address /opt/besu/data/
-RUN ls -l /opt/besu/data/
+# COPY --chown=besu:besu config/validator01/key01 /opt/besu/data/
+# COPY --chown=besu:besu config/validator01/Address01 /opt/besu/data/
+# RUN ls -l /opt/besu/data/
 
 COPY ./config/besu.json /config/besu.json
 

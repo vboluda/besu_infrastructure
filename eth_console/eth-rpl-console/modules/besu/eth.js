@@ -41,6 +41,11 @@ class beth{
         return this.connection.request("eth_getTransactionByHash",tx).result;
     }
 
+    getBlockByNumber(num,complete=true){
+        let params=[""+num,complete]
+        return this.connection.request("eth_getBlockByNumber",params).result;
+    }
+
     getTransactionCount(from){
         return this.nounces[from]++;
     }

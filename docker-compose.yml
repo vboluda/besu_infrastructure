@@ -8,8 +8,8 @@ services:
     image: vbvb/besu_validator01
     entrypoint: /opt/besu/bin/besu --config-file=/config/config.toml 
     volumes:
-      - keys:/opt/besu/keys
-      - ./besu/config/config.toml:/config/config.toml
+      - ./besu/config/validator01/key01:/opt/besu/data/key01
+      - ./besu/config/validator01/config.toml:/config/config.toml
     ports:
       - 30303:30303/tcp
       - 30303:30303/udp
@@ -17,7 +17,7 @@ services:
       - 8546:8546
       - 8547:8547
       - 9545:9545
-
+  
   startstop_validator01:
     build:
       context: start_stop/.
@@ -28,14 +28,13 @@ services:
       - STST_INTERVAL=1000
     depends_on:
       - "besu_validator01"
+
   eth_console:
     build:
       context: eth_console/.
     image: vbvb/eth_console
     volumes:
       - ./eth_console/WALLET.SEC:/console/eth-rpl-console/WALLET.SEC
+      - ./eth_console/CONFIG.DAT:/console/eth-rpl-console/CONFIG.DAT
     ports:
       - "9000:22"
-      
-volumes:
-  keys:

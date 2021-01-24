@@ -4,8 +4,8 @@ const Storage = require("../lib/Storage");
 
 class Config extends Storage {
 
-    constructor(){
-        super("config","CONFIG.DAT");
+    constructor(configFile='CONFIG.DAT'){
+        super("config",configFile);
     }
 
     setPrompt(prompt){

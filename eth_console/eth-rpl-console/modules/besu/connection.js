@@ -18,7 +18,13 @@ class besu_connection{
         //data={"jsonrpc":"2.0","method":"admin_peers","params":[],"id":1};
         //console.log("DATA:\n"+JSON.stringify(data));
         let res=request("POST",this.url,{"json":data});
-        return JSON.parse(res.getBody());
+        //console.log("HTTP - "+res.getBody());
+        let result=JSON.parse(res.getBody());
+        //console.log("JSON - "+JSON.stringify(result.error));
+        if(result.error){
+            console.info("Error - "+JSON.stringify(result.error));
+        }
+        return result;
     }
 }
 
