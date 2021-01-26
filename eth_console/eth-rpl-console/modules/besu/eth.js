@@ -46,12 +46,23 @@ class beth{
         return this.connection.request("eth_getBlockByNumber",params).result;
     }
 
+    gasPrice(){
+        let params=[];
+        return parseInt(this.connection.request("eth_gasPrice",params).result);
+    }
+
     getTransactionCount(from){
         return this.nounces[from]++;
     }
 
     sendTransaction(tx){
         tx.nonce=this.getTransactionCount(tx.from);
+        if(!tx.gasLimit){
+            console.info("ERROR - Provide gasLimit ");
+        }
+        if(!tx.gasPrice){
+            tx.gasPrice=this.gasPrice();
+        }
         let signedTx=this.wallet.signTransaction(tx);
         //console.log(JSON.stringify(tx));
         return this.sendRawTransaction(signedTx);
