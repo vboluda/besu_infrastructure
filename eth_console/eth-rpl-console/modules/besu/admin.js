@@ -1,7 +1,7 @@
 "use strict";
 
 var os = require( 'os' );
-var nets = os.networkInterfaces();
+const Misc=require("../utils/misc");
 
 class bAdmin{
     constructor(conn){
@@ -23,19 +23,19 @@ class bAdmin{
         return this.connection.request("admin_nodeInfo",[]).result;
     }
 
-    getEnodes(){
+    getEnode(){
         let enode_raw=this.nodeInfo().enode;
         let result=[];
-        for (const name of Object.keys(nets)) {
-            for (const net of nets[name]) {
-                // Skip over non-IPv4 and internal (i.e. 127.0.0.1) addresses
-                if (net.family === 'IPv4' && !net.internal) {
-                    console.log("FOUND IP "+net.address);
-                    result.push(enode_raw.replace('127.0.0.1',net.address))
-                }
-            }
-        }
-        return result;
+        var misc=new Misc();
+        var url=this.connection.url;
+        //console.log("URL: "+url);
+        var currentDomain=misc.extractIPFromUrl(url);
+        //console.log("Current Domain: "+currentDomain);
+        var currentIp=misc.getIp(currentDomain);
+        //console.log("Current IP: "+currentIp);
+        let enode=enode_raw.replace("127.0.0.1",currentIp);
+        //console.log("Enode: "+enode);
+        return enode;
     }
     
 }

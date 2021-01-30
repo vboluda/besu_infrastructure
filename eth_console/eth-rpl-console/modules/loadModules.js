@@ -11,6 +11,7 @@ const BConnection=require("./besu/connection");
 const besu_admin=require("./besu/admin");
 const besu_eth=require("./besu/eth");
 const besu_txpool=require("./besu/txpool");
+const besu_clique=require("./besu/clique")
 const besu_test=require("./besu/test");
 const Storage=require("./lib/Storage");
 const Config=require("./config/Config");
@@ -41,6 +42,7 @@ function loadModules(wallet,config){
                 let value={
                     connection: key,
                     admin:new besu_admin(besu_connection),
+                    clique:new besu_clique(besu_connection),
                     eth:new besu_eth(besu_connection,wallet),
                     txpool:new besu_txpool(besu_connection),
                     web3:new Proxy(besu_web3_0,Handler),

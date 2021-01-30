@@ -13,7 +13,7 @@
 
 
     var args = require('minimist')(process.argv.slice(2));
-    console.log(args);
+    //console.log(args);
 
     var arg_configfile=args.configfile || 'CONFIG.DAT';
     var arg_walletfile=args.walletfile || 'WALLET.SEC';

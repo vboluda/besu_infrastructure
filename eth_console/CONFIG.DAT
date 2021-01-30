@@ -1,0 +1,25 @@
+{
+    "besu":[
+        {
+            "name":"besu01",
+            "rpc_url":"http://besu_validator01:8545",
+            "ws_url":"http://besu_validator01:8546",
+            "graphql_url":"http://besu_validator01.local:8547",
+            "contracts":{}
+        },
+        {
+            "name":"besu02",
+            "rpc_url":"http://besu_validator02:8545",
+            "ws_url":"http://besu_validator02:8546",
+            "graphql_url":"http://besu_validator02.local:8547",
+            "contracts":{}
+        },
+        {
+            "name":"besu03",
+            "rpc_url":"http://besu_validator03:8545",
+            "ws_url":"http://besu_validator03:8546",
+            "graphql_url":"http://besu_validator03.local:8547",
+            "contracts":{}
+        }
+    ]
+}

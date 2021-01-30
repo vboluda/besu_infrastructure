@@ -77,6 +77,10 @@ class beth{
         }
         console.log(`TOTAL ${total} wei (${total/1000000000000000000} ether)`);
     }
+
+    coinbase(){
+        return this.connection.request("eth_coinbase",[]).result;
+    }
 }
 
 module.exports=beth;

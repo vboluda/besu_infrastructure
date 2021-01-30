@@ -1,5 +1,7 @@
 "use strict";
 
+var dnsSync = require('dns-sync');
+
 class misc{
     constructor(){
     }
@@ -22,6 +24,29 @@ class misc{
             gasPrice: _gasPrice,
             gasLimit: _gasLimit
         }
+    }
+
+    getIp(domain){
+        return dnsSync.resolve(domain);
+    }
+
+    extractIPFromUrl(url){
+        var p0=url.indexOf("//");
+        if(p0<0){
+            p0=0;
+        }else{
+            p0=p0+2;
+        }
+        let nurl=url.substring(p0,url.length);
+        var p1=nurl.indexOf(":");
+        if(p1>=0){
+            return nurl.substring(0,p1);
+        }
+        var p1=nurl.indexOf("/");
+        if(p1>=0){
+            return nurl.substring(0,p1);
+        }
+        return url.substring(0,url.length);
     }
 }
 

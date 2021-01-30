@@ -40,16 +40,61 @@ services:
     depends_on:
       - "besu_validator01"
   
+  besu_validator03:
+    build:
+      context: validator03/.
+    image: vbvb/besu_validator03
+    hostname: besu_validator03
+    domainname: besu_validator03.local
+    entrypoint: /opt/besu/bin/besu --config-file=/config/config.toml 
+    volumes:
+      - ./validator03/config/key03:/opt/besu/data/key03
+      - ./validator03/config/config.toml:/config/config.toml
+    ports:
+      - 50303:30303/tcp
+      - 50303:30303/udp
+      - 38545:8545
+      - 38546:8546
+      - 38547:8547
+      - 39545:9545
+    depends_on:
+      - "besu_validator02"
+  
   startstop_validator01:
     build:
       context: start_stop/.
-    image: vbvb/startstop_validator01
+    image: vbvb/startstop_validator
     entrypoint: nodejs main.js
     environment:
       - STST_URL=http://besu_validator01:8545
       - STST_INTERVAL=1000
+      - STST_VALIDATION_TIMES=10
+    depends_on:
+      - "besu_validator01"
+  
+  startstop_validator02:
+    build:
+      context: start_stop/.
+    image: vbvb/startstop_validator
+    entrypoint: nodejs main.js
+    environment:
+      - STST_URL=http://besu_validator02:8545
+      - STST_INTERVAL=1000
+      - STST_VALIDATION_TIMES=10
     depends_on:
       - "besu_validator02"
+
+  startstop_validator03:
+    build:
+      context: start_stop/.
+    image: vbvb/startstop_validator
+    entrypoint: nodejs main.js
+    environment:
+      - STST_URL=http://besu_validator03:8545
+      - STST_INTERVAL=1000
+      - STST_VALIDATION_TIMES=10
+    depends_on:
+      - "besu_validator03"
 
   eth_console:
     build:
